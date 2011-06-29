@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# set built-in default values
+INSTALL_PREFIX=/usr/local
+INSTALL_BIN_DIR=$INSTALL_PREFIX/bin
+INSTALL_JAR_DIR=$INSTALL_PREFIX/share/java
+
+# read default configuration
+if [ -f /etc/installjar.conf ]; then
+   . /etc/installjar.conf
+fi
+
+# override with user configuration
+if [ -f $HOME/.installjarrc ]; then
+   . $HOME/.installjarrc
+fi
+
