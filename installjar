@@ -15,3 +15,23 @@ if [ -f $HOME/.installjarrc ]; then
    . $HOME/.installjarrc
 fi
 
+function create_wrapper() {
+    cat < $INSTALL_PREFIX
+}
+
+while [ $# -gt 1]; do
+  arg=$1
+
+  case "$arg" in
+      -p|--prefix)
+	  shift
+	  INSTALL_PREFIX=$1
+          shift
+	  ;;
+  esac
+done
+
+jarfile=$1
+
+install $jarfile $INSTALL_JAR_DIR
+create_wrapper
